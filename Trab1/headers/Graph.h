@@ -7,9 +7,14 @@
 class Graph{
     private:
         std::vector<Vertex*> vertexVec;
-        std::vector<Edge*> edgeVec;
+        std::vector<Edge> edgeVec;
     public:
         Vertex * getVertex(int);
+        Edge getEdge(int);
+        void addVertex(int);
+        void addEdge(Vertex*,Vertex*);
+        int vecVertexSize();
+        int vecEdgeSize();
         
 };
 

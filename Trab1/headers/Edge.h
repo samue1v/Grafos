@@ -5,7 +5,7 @@
 
 class Edge{
     public:
-        std::pair<Vertex,Vertex> E;
+        std::pair<Vertex*,Vertex*> edge;
            
 };
 #endif
