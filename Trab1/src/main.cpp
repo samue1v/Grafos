@@ -28,9 +28,12 @@ void parseInput(Graph* g){
     for(int i = 0;i<n;i++){
         g->addVertex(i);
     }
-    while(std::fgets(in,sizeof(in),stdin)[0]!='\n'){
-        std::scanf("%d %d",&v1,&v2);
+    while(std::fgets(in,sizeof(in),stdin)!=NULL){
+        if(std::sscanf(in,"%d %d",&v1,&v2)!=2){
+            break;
+        }
         g->addEdge(g->getVertex(v1),g->getVertex(v2));
+        
     }
     for(int i=0;i<g->vecEdgeSize();i++){
         std::cout << g->getEdge(i).edge.first->label << " " << g->getEdge(i).edge.second->label << "\n";
