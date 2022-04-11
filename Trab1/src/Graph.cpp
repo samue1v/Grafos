@@ -19,6 +19,8 @@ int Graph::vecEdgeSize(){
 
 void Graph::addEdge(Vertex* v0,Vertex* v1){
     Edge e;
+    v0->neighbours.push_back(v1);
+    v1->neighbours.push_back(v0);
     e.edge.first = v0;
     e.edge.second = v1;
     edgeVec.push_back(e);

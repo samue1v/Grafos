@@ -1,13 +1,22 @@
 #include <iostream>
 #include <string>
+#include <queue>
 #include "../headers/Graph.h"
 void parseInput(Graph*);
-void algorithm(Graph*,std::vector<std::vector<Vertex*>>*);
+void BFS(Graph*,std::vector<std::vector<Vertex*>>*);
 int main(int argc, char const *argv[])
 {
     Graph *g = new Graph;
-    std::vector<std::vector<Vertex*>> *paths;
+    
+    //std::vector<std::vector<Vertex*>> *paths;
     parseInput(g);
+    int color = 0;
+    for(int i = 0;i<g->vecVertexSize();i++){
+        Vertex *v = g->getVertex(i);
+        if(v->visited == 0){    
+            //BFS(g,v,++color);
+        }
+    }
 }
 
 void parseInput(Graph* g){
@@ -33,7 +42,7 @@ void parseInput(Graph* g){
 
 }
 
-void algorithm(Graph* g,std::vector<std::vector<Vertex*>>* paths){
-    //lembra de pensar sobre a possibilidade de mais metodos para por na classe Graph
+void BFS(Graph* g,std::vector<std::vector<Vertex*>>* paths){
+
 }
 
