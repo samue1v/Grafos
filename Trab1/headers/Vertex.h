@@ -4,11 +4,10 @@
 class Vertex{
     public:
         Vertex(int);
-        bool viewed;
+        bool visited;
+        int color;
         int label;
         std::vector<Vertex*> neighbours;
-
-
 
 };
 #endif
