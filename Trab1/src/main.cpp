@@ -2,19 +2,11 @@
 #include <string>
 #include "../headers/Graph.h"
 void parseInput(Graph*);
+void algorithm(Graph*,std::vector<std::vector<Vertex*>>*);
 int main(int argc, char const *argv[])
 {
     Graph *g = new Graph;
-    /*
-    
-    g.addVertex(32);
-    g.addVertex(2);
-    g.addEdge(g.getVertex(0),g.getVertex(1));
-    g.getVertex(0)->label = 3;
-    std::cout << g.getVertex(0)->label << " " << "\n";
-    std::cout << g.getEdge(0).edge.first->label << " " << "\n";
-    std::cout << g.getEdge(0).edge.second->label << " " << "\n";
-    return 0;*/
+    std::vector<std::vector<Vertex*>> *paths;
     parseInput(g);
 }
 
@@ -39,5 +31,9 @@ void parseInput(Graph* g){
         std::cout << g->getEdge(i).edge.first->label << " " << g->getEdge(i).edge.second->label << "\n";
     }
 
+}
+
+void algorithm(Graph* g,std::vector<std::vector<Vertex*>>* paths){
+    //lembra de pensar sobre a possibilidade de mais metodos para por na classe Graph
 }
 
