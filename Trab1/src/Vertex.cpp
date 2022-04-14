@@ -2,5 +2,6 @@
 
 Vertex::Vertex(int label){
     this->label = label;
-    this->viewed=false;
+    this->visited=false;
+    this->done = false;
 }
