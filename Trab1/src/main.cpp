@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <queue>
-#include "../headers/Queue.h"
 #include "../headers/Graph.h"
 void parseInput(Graph*);
 void BFS(Graph*, Vertex*,int);
@@ -18,12 +17,6 @@ int main(int argc, char const *argv[])
         }
     }
     showResult(g);
-    /*
-    for(int i=0;i<g->vecEdgeSize();i++){
-        std::cout 
-        << "label:" <<g->getEdge(i).edge.first->label << " color:" << g->getEdge(i).edge.first->color << " " 
-        << "label:" <<g->getEdge(i).edge.second->label << " color:"<<g->getEdge(i).edge.second->color<<"\n"    ;
-    }*/
     
 }
 
@@ -46,13 +39,6 @@ void parseInput(Graph* g){
 
         
     }
-    /*
-    for(int i=0;i<g->vecEdgeSize();i++){
-        std::cout 
-        << g->getEdge(i).edge.first->label << " " << g->getEdge(i).edge.first->color << " " 
-        << g->getEdge(i).edge.second->label << " "<< g->getEdge(i).edge.second->color<<"\n"    ;
-    }
-    */
 }
 
 void BFS(Graph* g,Vertex* v,int color){
@@ -71,14 +57,18 @@ void BFS(Graph* g,Vertex* v,int color){
     }
 }
 
+
 void showResult(Graph *g){
     for(int i = 0;i<g->vecVertexSize();i++){
+        int cont = 0;
         if(g->getVertex(i)->done == false){
             int color = g->getVertex(i)->color;
             for(int j = 0;j<g->vecVertexSize();j++){
                 if(g->getVertex(j)->done == false && g->getVertex(j)->color == color){
-                    std::cout << g->getVertex(j)->label << " ";  
+                    if(cont!=0){std::cout<<" ";}
+                    std::cout << g->getVertex(j)->label;  
                     g->getVertex(j)->done = true;
+                    cont++;
                 }
             }
             std::cout << "\n"; 

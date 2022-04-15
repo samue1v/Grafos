@@ -2,13 +2,13 @@
 #define QUEUE_H
 #include <vector>
 #include "Vertex.h"
-class Queue{
+class Stack{
     private:
-        std::vector<Vertex*> q;
+        std::vector<Vertex*> s;
     public:
-        std::vector<Vertex*>::iterator unq();
-        void inq(Vertex*);
+        Vertex* sPop();
+        void sPush(Vertex*);
         int getSize();
-        std::vector<Vertex*>::iterator getBegin();
+        
 };
 #endif

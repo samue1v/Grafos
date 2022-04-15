@@ -1,19 +1,16 @@
-#include "../headers/Queue.h"
+#include "../headers/Stack.h"
 
-std::vector<Vertex*>::iterator Queue::unq(){
-    std::vector<Vertex*>::iterator front = getBegin();
-    q.erase(front);
-    return front;
+Vertex* Stack::sPop(){
+    Vertex* head;
+    head = s.back();
+    s.pop_back();
+    return head;
 }
 
-void Queue::inq(Vertex* v){
-    q.push_back(v);
+void Stack::sPush(Vertex* v){
+    s.push_back(v);
 }
 
-int Queue::getSize(){
-    return q.size();
-}
-
-std::vector<Vertex*>::iterator Queue::getBegin(){
-    return q.begin();
+int Stack::getSize(){
+    return s.size();
 }
