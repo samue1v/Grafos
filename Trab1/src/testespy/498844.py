@@ -28,9 +28,7 @@ def main():
         v = g.getVertex(i)
         if v.color == 0:
             color+=1
-            v.color = color
-            if len(v.neighbours) > 0:
-                BFS(g,v,color)
+            BFS(g,v,color)
     showResult(g)
 
 def BFS(g,v,color):
@@ -58,11 +56,10 @@ def parseInput(g):
     while True:
         try:
             r = input()
-            e.append(r.split(" "))
-            g.addNeigh(g.getVertex(int(e[-1][0])-1) , g.getVertex(int(e[-1][1])-1))
         except:
             break
-
+        e.append(r.split(" "))
+        g.addNeigh(g.getVertex(int(e[-1][0])-1) , g.getVertex(int(e[-1][1])-1))
         
 def showResult(g):
     size = g.vecVertexSize()
@@ -70,20 +67,16 @@ def showResult(g):
         cont = 0
         v=g.getVertex(i)
         if v.done == False:
-            if len(v.neighbours)>0:
-                color = v.color
-                for j in range(0,size):
-                    v1=g.getVertex(j)
-                    if v1.color == color:
-                        if cont !=0:
-                            print(" ",end='')
-                        print(v1.label,end='')
-                        v1.done = True
-                        cont+=1
-                print("")
-            else:
-                print(v.label)
-        
+            color = v.color
+            for j in range(0,size):
+                v1=g.getVertex(j)
+                if v1.done == False and v1.color == color:
+                    if cont !=0:
+                        print(" ",end='')
+                    print(v1.label,end='')
+                    v1.done = True
+                    cont+=1
+            print("")
             
 
 if __name__ == "__main__":
