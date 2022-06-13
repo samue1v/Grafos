@@ -189,7 +189,7 @@ void Heap::exchangeIndex(Vertex * v1, Vertex * v2){
 //Main
 
 void parseInput(Graph*);
-float MSTsum(Graph*,Heap*);
+void Djiska(Graph * g,Heap* heap);
 
 void parseInput(Graph* g){
     char in[100];
@@ -214,56 +214,29 @@ void parseInput(Graph* g){
     }
 }
 
-float MSTsum(Graph * g,Heap* heap){
-    float peso = 0;
+
+void Djiska(Graph * g,Heap* heap){
     Vertex* vv;
     float vw;
     while(heap->l>0){
         Vertex * u = heap->heapRem();
         u->done = true;
-        peso+=u->k;
+        u->d=u->k;
         std::vector<Pair> n = u->neighbours;
-        for(long unsigned int i = 0;i<u->neighbours.size();i++){
+        for (long unsigned int i=0;i<n.size();i++){
             vv = n[i].v;
             vw = n[i].w;
-            if(vv->done == false){
-                if(vw<vv->k || vv->k ==-1){
-                    vv->parent = u;
-                    vv->k=vw;
-                    if(vv->inq == true){
-                        heap->sobe(vv->heap_pos);
-                    }
-                    else{
-                        vv->inq = true;
-                        heap->heapAdd(vv);
-                    }
-                }
-            }
-        }
-    }
-    return peso;
-}
-
-void Djiska(Graph * g,Heap* heap){
-    Vertex* vv;
-    float vw;
-    Vertex * u = heap->heapRem();
-    u->done = true;
-    u->d=u->k;
-    std::vector<Pair> n = u->neighbours;
-    for (long unsigned int i=0;i<n.size();i++){
-        vv = n[i].v;
-        vw = n[i].w;
-        if(vv->done==false && vv->inq == false){
-            vv->k = u->d+vw;
-            vv->parent = u;
-            heap->heapAdd(vv);
-        }
-        else if(vv->inq == true){
-            if(vv->k>u->d+vw){
+            if(vv->done==false && vv->inq == false){
                 vv->k = u->d+vw;
                 vv->parent = u;
-                heap->sobe(vv->heap_pos);
+                heap->heapAdd(vv);
+            }
+            else if(vv->inq == true){
+                if(vv->k>u->d+vw){
+                    vv->k = u->d+vw;
+                    vv->parent = u;
+                    heap->sobe(vv->heap_pos);
+                }
             }
         }
     }
@@ -272,7 +245,7 @@ void Djiska(Graph * g,Heap* heap){
 
 void mostraRes(Graph * g){
     Vertex* v;
-    for(long unsigned i=1;i<g->vecVertexSize();i++){
+    for(int i=1;i<g->vecVertexSize();i++){
         v = g->getVertex(i);
         if(v->k==-1){
             printf("%d INFINITO\n",v->label);
@@ -294,8 +267,6 @@ int main(int argc, char const *argv[])
     heap->heapAdd(v0);
     Djiska(g,heap);
     mostraRes(g);
-    //float peso = MSTsum(g,heap);
-    //printf("%.3f\n",peso);
     
 }
 
